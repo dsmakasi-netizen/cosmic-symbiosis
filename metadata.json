@@ -1,5 +1,5 @@
 {
-  "name": "Copy of Cosmic Symbiosis Imprint",
+  "name": "Cosmic Symbiosis Imprint",
   "description": "An immersive WebGL journey from disconnection to resonance, utilizing hand gestures and audio-visual synesthesia to generate a unique personal imprint.",
   "requestFramePermissions": [
     "camera",

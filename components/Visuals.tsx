@@ -78,6 +78,7 @@ const WireframeHand: React.FC<{ landmarks: Landmark[]; resonance: number }> = ({
 
     if (!landmarks || landmarks.length === 0) return null;
 
+    // Coordinate mapping: 0..1 to -12.5..12.5 and 10..-10
     const scaleX = -25;
     const scaleY = -20;
     const offsetX = 12.5;
@@ -542,11 +543,14 @@ const MainParticleSystem: React.FC<{
     // Interpolation Speed
     const lerpFactor = isFist ? 0.08 : (isExpansion ? 0.05 : 0.03);
     
-    // Calculate Hand World Position (Approximate mapping from screen 0..1 to World -30..30)
-    // Inverting X for mirror effect, flipping Y for screen coords
-    const handWorldX = (handPos.x - 0.5) * -40;
-    const handWorldY = -(handPos.y - 0.5) * 30;
-    const handWorldZ = 5; // Slightly in front
+    // Calculate Hand World Position
+    // Aligned with WireframeHand: 
+    // x range: -12.5 to 12.5 (from 0..1 input) -> (x-0.5) * -25
+    // y range: -10 to 10 (from 0..1 input) -> (y-0.5) * -20 
+    // z: Wireframe is at 5.
+    const handWorldX = (handPos.x - 0.5) * -25;
+    const handWorldY = (handPos.y - 0.5) * -20;
+    const handWorldZ = 5; 
 
     // Color Logic
     const distFromFull = Math.abs(moonPhase - 0.5); 
